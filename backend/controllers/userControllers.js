@@ -32,7 +32,7 @@ const authUser = asyncHandler(async (req, res) => {
             token: generateToken(user._id)
         })
     } else {
-        throw new Error("Invalid login")
+        throw new Error('Invalid credentials')
     }
 
 
