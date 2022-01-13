@@ -48,6 +48,17 @@ const getAllUsers = asyncHandler(async (req, res) => {
 
 })
 
+const getAllUsersBySearch = asyncHandler(async (req, res) => {
+    const { search } = req.body
+    try {
+        const users = await User.find({name:search})
+        res.json(users)
+    } catch (error) {
+        res.json(error)
+    }
+
+})
+
 const deleteUser = asyncHandler(async (req, res, next) => {
     const user = await User.findById(req.params.id)
     await user.remove()
@@ -81,5 +92,6 @@ export {
     deleteUser,
     editUser,
     getUser,
-    editUserDetails
+    editUserDetails,
+    getAllUsersBySearch
 }
